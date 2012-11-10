@@ -2,6 +2,9 @@ SUBDIRS = src man doc
 ACLOCAL_AMFLAGS = -I m4
 
 GENFILES	       = tirpc/rpcsvc/crypt.h \
+			 tirpc/rpcsvc/mount.h \
+			 tirpc/rpcsvc/nfs_prot.h \
+			 tirpc/rpcsvc/rquota.h \
 			 tirpc/rpc/rpcb_prot.h
 
 noinst_HEADERS	       = tirpc/reentrant.h \
@@ -11,6 +14,9 @@ noinst_HEADERS	       = tirpc/reentrant.h \
 
 nobase_include_HEADERS = tirpc/netconfig.h \
 			 tirpc/rpcsvc/crypt.x \
+			 tirpc/rpcsvc/mount.x \
+			 tirpc/rpcsvc/nfs_prot.x \
+			 tirpc/rpcsvc/rquota.x \
 			 tirpc/rpc/xdr.h \
 			 tirpc/rpc/types.h \
 			 tirpc/rpc/svc_soc.h \
