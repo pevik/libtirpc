@@ -1,6 +1,9 @@
 SUBDIRS = src man doc
 ACLOCAL_AMFLAGS = -I m4
 
+GENFILES	       = tirpc/rpcsvc/crypt.h \
+			 tirpc/rpc/rpcb_prot.h
+
 noinst_HEADERS	       = tirpc/reentrant.h \
 			 tirpc/getpeereid.h \
 			 tirpc/libc_private.h \
@@ -8,7 +11,6 @@ noinst_HEADERS	       = tirpc/reentrant.h \
 
 nobase_include_HEADERS = tirpc/netconfig.h \
 			 tirpc/rpcsvc/crypt.x \
-			 tirpc/rpcsvc/crypt.h \
 			 tirpc/rpc/xdr.h \
 			 tirpc/rpc/types.h \
 			 tirpc/rpc/svc_soc.h \
@@ -21,7 +23,6 @@ nobase_include_HEADERS = tirpc/netconfig.h \
 			 tirpc/rpc/rpcent.h \
 			 tirpc/rpc/rpc_com.h \
 			 tirpc/rpc/rpcb_prot.x \
-			 tirpc/rpc/rpcb_prot.h \
 			 tirpc/rpc/rpcb_clnt.h \
 			 tirpc/rpc/raw.h \
 			 tirpc/rpc/pmap_rmt.h \
@@ -48,5 +49,14 @@ endif
 pkgconfigdir=$(libdir)/pkgconfig
 pkgconfig_DATA = libtirpc.pc
 
-CLEANFILES	       = cscope.* *~
+nobase_nodist_include_HEADERS = $(GENFILES)
+BUILT_SOURCES = $(GENFILES)
+
+$(GENFILES): %.h: %.x
+	mkdir -p $(dir $@)
+	rpcgen -h -o $@ $<
+
+force:
+
+CLEANFILES	       = cscope.* *~ $(GENFILES)
 DISTCLEANFILES	       = Makefile.in libtirpc*.tar.gz

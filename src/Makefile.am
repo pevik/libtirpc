@@ -8,7 +8,7 @@
 noinst_HEADERS = rpc_com.h debug.h
 
 AM_CPPFLAGS = -I$(top_srcdir)/tirpc -include config.h -DPORTMAP -DINET6 \
-		-D_GNU_SOURCE -Wall -pipe
+		-D_GNU_SOURCE -Wall -pipe -I$(top_builddir)/tirpc
 
 lib_LTLIBRARIES = libtirpc.la
 
