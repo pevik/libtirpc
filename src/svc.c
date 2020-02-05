@@ -57,9 +57,6 @@
 
 #define max(a, b) (a > b ? a : b)
 
-static SVCXPRT **__svc_xports;
-int __svc_maxrec;
-
 /*
  * The services list
  * Each entry represents a set of procedures (an rpc program).
